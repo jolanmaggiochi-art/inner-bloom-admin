@@ -28,7 +28,7 @@ export default async function ExercisesPage() {
     .not('video_url', 'is', null);
 
   // Fusionner et dédupliquer par nom
-  const exerciseMap = new Map<string, { id: string; name: string; category: string | null; description: string | null; video_url: string }>();
+  const exerciseMap = new Map<string, { id: string; name: string; category: string | null; description: string | null; video_url: string; thumbnail_url: string | null }>();
   
   // D'abord les exercices de la bibliothèque
   (libraryExercises || []).forEach((ex) => {
@@ -45,6 +45,7 @@ export default async function ExercisesPage() {
         category: null,
         description: null,
         video_url: ex.video_url,
+        thumbnail_url: null,
       });
     }
   });
