@@ -50,7 +50,6 @@ export default async function ExercisesPage() {
   });
 
   const exercises = Array.from(exerciseMap.values()).sort((a, b) => a.name.localeCompare(b.name));
-  const error = null;
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -93,13 +92,7 @@ export default async function ExercisesPage() {
           </span>
         </div>
 
-        {error && (
-          <div className="mb-4 rounded-lg bg-red-50 p-4 text-red-600">
-            Erreur: {error.message}
-          </div>
-        )}
-
-        <ExerciseList initialExercises={exercises || []} />
+        <ExerciseList initialExercises={exercises} />
       </main>
     </div>
   );
