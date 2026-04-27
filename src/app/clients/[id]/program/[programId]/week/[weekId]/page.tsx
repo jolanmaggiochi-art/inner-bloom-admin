@@ -275,11 +275,16 @@ export default function WeekEditorPage() {
   }
 
   async function handleBatchUpdateExercises(updates: { id: string; data: Partial<Exercise> }[]) {
-    await Promise.all(
+    const results = await Promise.all(
       updates.map(({ id, data }) =>
         supabase.from('exercises').update(data).eq('id', id)
       )
     );
+    const errors = results.filter((r) => r.error);
+    if (errors.length > 0) {
+      console.error('Batch update errors:', errors.map((e) => e.error));
+      alert('Erreur: ' + errors.map((e) => e.error?.message).join(', '));
+    }
     fetchWeek();
   }
 
@@ -795,7 +800,7 @@ function renderExercisesWithSupersets(
           {canCreateSuperset && (
             <button
               onClick={() => {
-                const newGroup = Date.now();
+                const newGroup = Math.floor(Math.random() * 2000000000);
                 onBatchUpdateExercises([
                   { id: exercise.id, data: { superset_group: newGroup } },
                   { id: nextExercise.id, data: { superset_group: newGroup } },
