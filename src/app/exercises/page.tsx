@@ -21,11 +21,10 @@ export default async function ExercisesPage() {
     .select('*')
     .order('name', { ascending: true });
 
-  // Récupérer aussi les exercices utilisés dans les séances (avec video_url direct)
+  // Récupérer aussi les exercices utilisés dans les séances
   const { data: usedExercises } = await supabase
     .from('exercises')
-    .select('name, video_url')
-    .not('video_url', 'is', null);
+    .select('name, video_url');
 
   // Fusionner et dédupliquer par nom
   const exerciseMap = new Map<string, { id: string; name: string; category: string | null; description: string | null; video_url: string; thumbnail_url: string | null }>();
@@ -38,13 +37,13 @@ export default async function ExercisesPage() {
   // Puis les exercices des séances (si pas déjà dans la bibliothèque)
   (usedExercises || []).forEach((ex, index) => {
     const key = ex.name.toLowerCase();
-    if (!exerciseMap.has(key) && ex.video_url) {
+    if (!exerciseMap.has(key)) {
       exerciseMap.set(key, {
         id: `used-${index}`,
         name: ex.name,
         category: null,
         description: null,
-        video_url: ex.video_url,
+        video_url: ex.video_url || '',
         thumbnail_url: null,
       });
     }
