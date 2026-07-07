@@ -258,11 +258,23 @@ export default function WeekEditorPage() {
 
     const { error } = await supabase.from('exercises').insert({
       session_id: sessionId,
-      name: 'Nouvel exercice',
+      name: '',
       order_index: orderIndex,
     });
 
-    if (!error) fetchWeek();
+    if (error) {
+      alert('Erreur: ' + error.message);
+    } else {
+      await fetchWeek();
+      setTimeout(() => {
+        const inputs = document.querySelectorAll<HTMLInputElement>(`[data-session="${sessionId}"] input[data-exercise-name]`);
+        const lastInput = inputs[inputs.length - 1];
+        if (lastInput) {
+          lastInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          lastInput.focus();
+        }
+      }, 100);
+    }
   }
 
   async function handleUpdateExercise(exerciseId: string, updates: Partial<Exercise>) {
@@ -521,7 +533,7 @@ function SessionCard({
   const typeLabel = TYPE_OPTIONS.find((t) => t.value === session.type)?.label || session.type;
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white">
+    <div className="rounded-2xl border border-gray-200 bg-white" data-session={session.id}>
       {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-100 p-4">
         <button
@@ -880,6 +892,7 @@ function ExerciseRow({
             onFocus={() => setShowLibrary(true)}
             onBlur={handleNameBlur}
             className="w-full rounded border border-transparent bg-transparent px-2 py-1 font-medium text-gray-800 hover:border-gray-300 focus:border-rose-400 focus:outline-none"
+            data-exercise-name
             placeholder="Nom de l'exercice"
           />
           {showLibrary && filteredLibrary.length > 0 && localName.length > 0 && (
