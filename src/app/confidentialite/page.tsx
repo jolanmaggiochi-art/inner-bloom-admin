@@ -20,8 +20,8 @@ export default function ConfidentialitePage() {
         <p>
           Responsable du traitement et contact pour toute question relative à vos
           données :{' '}
-          <a className="underline" href="mailto:jmaggiochi@gmail.com">
-            jmaggiochi@gmail.com
+          <a className="underline" href="mailto:laura_honvlt@icloud.com">
+            laura_honvlt@icloud.com
           </a>
         </p>
       </Section>
@@ -164,8 +164,8 @@ export default function ConfidentialitePage() {
         </ul>
         <p>
           Pour exercer ces droits, écrivez-nous à{' '}
-          <a className="underline" href="mailto:jmaggiochi@gmail.com">
-            jmaggiochi@gmail.com
+          <a className="underline" href="mailto:laura_honvlt@icloud.com">
+            laura_honvlt@icloud.com
           </a>
           . Nous vous répondons sous un délai maximum d&apos;un mois.
         </p>

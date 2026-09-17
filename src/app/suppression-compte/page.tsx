@@ -14,8 +14,8 @@ export default function SuppressionComptePage() {
         <p>
           Pour supprimer votre compte Inner Bloom et l&apos;ensemble des données
           associées, envoyez un email à{' '}
-          <a className="underline" href="mailto:jmaggiochi@gmail.com">
-            jmaggiochi@gmail.com
+          <a className="underline" href="mailto:laura_honvlt@icloud.com">
+            laura_honvlt@icloud.com
           </a>{' '}
           depuis l&apos;adresse utilisée lors de votre inscription, avec pour
           objet <strong>« Suppression de mon compte »</strong>.

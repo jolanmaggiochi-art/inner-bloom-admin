@@ -159,8 +159,8 @@ export default function CguPage() {
         </p>
         <p>
           Pour toute question :{' '}
-          <a className="underline" href="mailto:jmaggiochi@gmail.com">
-            jmaggiochi@gmail.com
+          <a className="underline" href="mailto:laura_honvlt@icloud.com">
+            laura_honvlt@icloud.com
           </a>
         </p>
       </Section>
