@@ -12,9 +12,10 @@ export default function ConfidentialitePage() {
     <LegalPage title="Politique de confidentialité" lastUpdated="17 septembre 2026">
       <Section title="1. Qui est responsable de vos données ?">
         <p>
-          L&apos;application Inner Bloom est éditée par [NOM LÉGAL DE LA COACH /
-          DE LA STRUCTURE], [STATUT JURIDIQUE], dont le siège est situé [ADRESSE
-          COMPLÈTE], immatriculée sous le numéro [SIRET].
+          L&apos;application Inner Bloom est éditée par Laura Honvault,
+          entrepreneuse individuelle, dont le siège est situé 1640 boulevard
+          Edmond Labrasse, 62780 Stella, immatriculée sous le numéro SIRET
+          840 735 914 00045.
         </p>
         <p>
           Responsable du traitement et contact pour toute question relative à vos

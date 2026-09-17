@@ -16,9 +16,9 @@ export default function CguPage() {
       <Section title="1. Objet">
         <p>
           Les présentes conditions régissent l&apos;utilisation de
-          l&apos;application mobile Inner Bloom, éditée par [NOM LÉGAL DE LA
-          COACH / DE LA STRUCTURE], [STATUT JURIDIQUE], [ADRESSE], immatriculée
-          sous le numéro [SIRET].
+          l&apos;application mobile Inner Bloom, éditée par Laura Honvault,
+          entrepreneuse individuelle, 1640 boulevard Edmond Labrasse, 62780
+          Stella, immatriculée sous le numéro SIRET 840 735 914 00045.
         </p>
         <p>
           En créant un compte, vous acceptez ces conditions dans leur intégralité.
