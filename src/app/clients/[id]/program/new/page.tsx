@@ -27,6 +27,16 @@ export default function NewProgramPage() {
     setError('');
 
     try {
+      // Une cliente ne doit avoir qu'un seul programme actif : on clôture
+      // le précédent avant d'en créer un nouveau.
+      const { error: closeError } = await supabase
+        .from('programs')
+        .update({ status: 'completed' })
+        .eq('client_id', clientId)
+        .eq('status', 'active');
+
+      if (closeError) throw closeError;
+
       const { data, error: insertError } = await supabase
         .from('programs')
         .insert({
@@ -98,6 +108,11 @@ export default function NewProgramPage() {
               className="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:border-rose-400 focus:outline-none focus:ring-2 focus:ring-rose-100"
             />
           </div>
+
+          <p className="mb-6 rounded-lg bg-amber-50 p-3 text-sm text-amber-700">
+            Le programme en cours de cette cliente sera marqué comme terminé : elle
+            verra désormais ce nouveau programme dans l'app.
+          </p>
 
           <div className="flex gap-2">
             <button
