@@ -9,6 +9,7 @@ type Client = {
   last_name: string | null;
   created_at: string;
   role: string;
+  onboarding_completed_at: string | null;
   programs: {
     id: string;
     name: string;
@@ -20,10 +21,9 @@ type Client = {
 
 type Props = {
   clients: Client[];
-  onboardingCompletedIds: string[];
 };
 
-export function ClientSearch({ clients, onboardingCompletedIds }: Props) {
+export function ClientSearch({ clients }: Props) {
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredClients = clients.filter((client) => {
@@ -55,7 +55,7 @@ export function ClientSearch({ clients, onboardingCompletedIds }: Props) {
           {filteredClients.map((client) => {
             const activeProgram = client.programs?.find((p) => p.status === 'active');
             const hasUnreadUpdates = client.weekly_updates?.length > 0;
-            const hasCompletedOnboarding = onboardingCompletedIds.includes(client.id);
+            const hasCompletedOnboarding = Boolean(client.onboarding_completed_at);
 
             return (
               <Link

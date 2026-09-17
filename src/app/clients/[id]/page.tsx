@@ -35,13 +35,6 @@ export default async function ClientPage({ params }: Props) {
     notFound();
   }
 
-  // Récupérer l'onboarding
-  const { data: onboarding } = await supabase
-    .from('onboarding_responses')
-    .select('*')
-    .eq('user_id', id)
-    .single();
-
   // Récupérer les programmes
   const { data: programs } = await supabase
     .from('programs')
@@ -113,7 +106,7 @@ export default async function ClientPage({ params }: Props) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {!client.onboarding_completed && (
+            {!client.onboarding_completed_at && (
               <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-700">
                 Onboarding en attente
               </span>
@@ -139,7 +132,7 @@ export default async function ClientPage({ params }: Props) {
             />
 
             {/* Questionnaire onboarding */}
-            <OnboardingSection onboarding={onboarding} />
+            <OnboardingSection profile={client} />
 
             {/* Questions personnalisées */}
             <CustomQuestionsSection clientId={id} />

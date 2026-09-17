@@ -10,6 +10,7 @@ type Client = {
   last_name: string | null;
   created_at: string;
   role: string;
+  onboarding_completed_at: string | null;
   programs: {
     id: string;
     name: string;
@@ -39,6 +40,7 @@ export default async function DashboardPage() {
       last_name,
       created_at,
       role,
+      onboarding_completed_at,
       programs (
         id,
         name,
@@ -48,15 +50,6 @@ export default async function DashboardPage() {
       monthly_reviews (id)
     `)
     .order('created_at', { ascending: false });
-
-  // Récupérer les onboarding responses séparément
-  const clientIds = clients?.map((c) => c.id) || [];
-  const { data: onboardingData } = await supabase
-    .from('onboarding_responses')
-    .select('user_id')
-    .in('user_id', clientIds);
-
-  const onboardingCompletedIds = onboardingData?.map((o) => o.user_id) || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -100,7 +93,7 @@ export default async function DashboardPage() {
           </div>
         )}
 
-        <ClientSearch clients={clients || []} onboardingCompletedIds={onboardingCompletedIds} />
+        <ClientSearch clients={clients || []} />
       </main>
     </div>
   );
