@@ -1,7 +1,14 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
+// Pages accessibles sans authentification (exigées par l'App Store et le Play Store)
+const PUBLIC_PATHS = ['/confidentialite', '/cgu', '/suppression-compte'];
+
 export async function middleware(request: NextRequest) {
+  if (PUBLIC_PATHS.some((path) => request.nextUrl.pathname.startsWith(path))) {
+    return NextResponse.next();
+  }
+
   let supabaseResponse = NextResponse.next({
     request,
   });
